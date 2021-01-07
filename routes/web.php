@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+
+Route::get('/contas-receber', 'ContasReceberController@index');
+Route::get('/contas-receber/adicionar', 'ContasReceberController@add');
