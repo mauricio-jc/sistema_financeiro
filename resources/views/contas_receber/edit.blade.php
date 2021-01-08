@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
-@section('css')
-<link rel="stylesheet" href="{{ url('/js/jquery-ui/jquery-ui.min.css') }}">
-@endsection
-
 @section('content')
 	<h2>
 		Editar conta a receber
-		<a href="{{ url('/admin/contas-receber') }}" class="btn btn-success pull-right">
+		<a href="{{ url('/contas-receber') }}" class="btn btn-success pull-right">
 			<i class="fa fa-chevron-left" aria-hidden="true"></i> Voltar
 		</a>
 	</h2>
@@ -44,12 +40,12 @@
     </div>
     @endif
 
-	<form action="{{ url('/admin/contas-receber/atualizar/' . $contaReceber->id) }}" method="post" class="row">
+	<form action="{{ url('/contas-receber/atualizar/' . $contaReceber->id) }}" method="post" class="row">
 		@csrf
 
 		<div class="form-group col-md-8">
 			<label>Cliente: *</label>
-			<input type="text" id="cliente" name="cliente" class="form-control" value="{{ $cliente }}" required>
+			<input type="text" name="cliente" class="form-control" value="{{ $contaReceber->cliente }}" required>
 		</div>
 
 		<div class="form-group col-md-4">
@@ -85,20 +81,9 @@
 		</div>
 
 		<div class="form-group col-md-12">
-			<button type="submit" class="btn btn-success">
+			<button type="submit" class="btn btn-primary primary-back">
 				<i class="fa fa-refresh" aria-hidden="true"></i> Atualizar
 			</button>
 		</div>
 	</form>
-@endsection
-
-@section('js')
-<script src="{{ url('/js/jquery-ui/jquery-ui.min.js') }}"></script>
-<script>
-    (function ($) {
-        $('#cliente').autocomplete({
-            source : '/buscar-cliente'
-        });
-    })(jQuery);
-</script>
 @endsection

@@ -10,10 +10,10 @@ class ContaReceber extends Model
     protected $table = 'contas_receber';
     protected $fillable = ['cliente', 'data', 'valor', 'forma_pagamento', 'situacao', 'observacoes'];
 
-    public static function getContaReceber($nome = '', $dataIni = '', $dataFim = '', $formaPagamento = 'Todos', $situacao = 'Todos') {
+    public static function getContaReceber($cliente = '', $dataIni = '', $dataFim = '', $formaPagamento = 'Todos', $situacao = 'Todos') {
     	$contasReceber = DB::table('contas_receber');
 
-    	if($nome != '') $contasReceber = $contasReceber->where("nome_cliente", "like", "%$nome%");
+    	if($cliente != '') $contasReceber = $contasReceber->where("cliente", "like", "%$cliente%");
 
     	if($dataIni != '') $contasReceber = $contasReceber->where('data', '>=', convertDateDb($dataIni));
 

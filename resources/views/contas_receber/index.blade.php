@@ -32,7 +32,7 @@
 			<form action="{{ url('/contas-receber') }}" method="get">
 				<div class="form-group col-md-4">
 					<label>Cliente:</label>
-					<input type="text" name="nome" class="form-control">
+					<input type="text" name="cliente" class="form-control">
 				</div>
 
 				<div class="form-group col-md-4">
@@ -82,7 +82,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Nome</th>
+					<th>Cliente</th>
 					<th>Data</th>
 					<th>Valor</th>
 					<th>Forma de pagamento</th>
@@ -93,11 +93,17 @@
 			<tbody>
 				@foreach($contasReceber as $contaReceber)
 				<tr>
-					<td>{{ $contaReceber->nome_cliente }}</td>
+					<td>{{ $contaReceber->cliente }}</td>
 					<td>{{ convertDateScreen($contaReceber->data) }}</td>
 					<td>R$ {{ formatCoin($contaReceber->valor) }}</td>
 					<td>{{ $contaReceber->forma_pagamento }}</td>
-					<td>{{ $contaReceber->situacao }}</td>
+					<td>
+						@if($contaReceber->situacao == 'Aberto')
+							<span class="label label-warning">Aberto</span>
+						@else
+							<span class="label label-success">Recebido</span>
+						@endif
+					</td>
 					<td>
 						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#conta-{{ $contaReceber->id }}">
 							<i class="fa fa-eye" aria-hidden="true"></i>
@@ -158,7 +164,7 @@
 			}
 			else {
 				echo $contasReceber->appends([
-					'nome' => $dadosGet['nome'],
+					'cliente' => $dadosGet['cliente'],
 					'data_ini' => $dadosGet['data_ini'],
 					'data_fim' => $dadosGet['data_fim'],
 					'forma_pagamento' => $dadosGet['forma_pagamento'],

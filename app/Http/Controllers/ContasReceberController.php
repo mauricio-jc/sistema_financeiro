@@ -21,7 +21,7 @@ class ContasReceberController extends Controller
         }
         else {
             $dadosGet = UtilController::verificaCamposGet($dadosGet);
-            $contasReceber = ContaReceber::getContaReceber($dadosGet['nome'], $dadosGet['data_ini'], $dadosGet['data_fim'], $dadosGet['forma_pagamento'], $dadosGet['situacao']);
+            $contasReceber = ContaReceber::getContaReceber($dadosGet['cliente'], $dadosGet['data_ini'], $dadosGet['data_fim'], $dadosGet['forma_pagamento'], $dadosGet['situacao']);
         }
 
     	return view('contas_receber.index', compact('dadosGet', 'formasPagamentos', 'aberto', 'contasReceber'));
@@ -32,18 +32,12 @@ class ContasReceberController extends Controller
     	return view('contas_receber.add', compact('formasPagamentos'));
     }
 
-    public function store(ContasReceberRequest $request) {
+    public function store(Request $request) {
     	$dados = $request->all();
-    	$dadosContaReceber = [
-	    	'cliente' => $cliente->name,
-	    	'data' => convertDateDb($dados['data']),
-	    	'valor' => convertDecimalDb($dados['valor']),
-	    	'forma_pagamento' => $dados['forma_pagamento'],
-	    	'situacao' => $dados['situacao'],
-	    	'observacoes' => $dados['observacoes']
-    	];
+        $dados['data'] = convertDateDb($dados['data']);
+        $dados['valor'] = convertDecimalDb($dados['valor']);
 
-    	$contaReceber = new ContaReceber($dadosContaReceber);
+    	$contaReceber = new ContaReceber($dados);
 
     	if($contaReceber->save()) {
     		Session::flash('success', 'Recebimento cadastrado com sucesso.');
@@ -58,25 +52,17 @@ class ContasReceberController extends Controller
     public function edit($id) {
         $formasPagamentos = FormaPagamento::orderBy('nome', 'asc')->get();
         $contaReceber = ContaReceber::find($id);
-        $cliente = $contaReceber->id_cliente . ' - ' . $contaReceber->nome_cliente . '. Documento: ' . $contaReceber->cpf_cnpj_cliente;
-        return view('contas_receber.edit', compact('formasPagamentos', 'contaReceber', 'cliente'));
+        return view('contas_receber.edit', compact('formasPagamentos', 'contaReceber'));
     }
 
-    public function update(ContasReceberRequest $request, $id) {
+    public function update(Request $request, $id) {
         $dados = $request->all();
-
-        $dadosContaReceber = [
-            'cliente' => $cliente->name,
-            'data' => convertDateDb($dados['data']),
-            'valor' => convertDecimalDb($dados['valor']),
-            'forma_pagamento' => $dados['forma_pagamento'],
-            'situacao' => $dados['situacao'],
-            'observacoes' => $dados['observacoes']
-        ];
+        $dados['data'] = convertDateDb($dados['data']);
+        $dados['valor'] = convertDecimalDb($dados['valor']);
 
         $contaReceber = ContaReceber::find($id);
 
-        if($contaReceber->update($dadosContaReceber)) {
+        if($contaReceber->update($dados)) {
             Session::flash('success', 'Recebimento atualizado com sucesso.');
             return redirect('/contas-receber');
         }
