@@ -14,9 +14,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index');
-
-Route::get('/contas-receber', 'ContasReceberController@index');
-Route::get('/contas-receber/adicionar', 'ContasReceberController@add');
-Route::post('/contas-receber/salvar', 'ContasReceberController@store');
-Route::get('/contas-receber/editar/{id}', 'ContasReceberController@edit');
-Route::post('/contas-receber/atualizar/{id}', 'ContasReceberController@update');
