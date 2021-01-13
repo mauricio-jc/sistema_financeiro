@@ -2,8 +2,31 @@
 
 @section('content')
 
-	<h2>Contas a receber</h2>
+	<h2>
+        Contas a receber
+        <a href="{{ url('/contas-receber/adicionar') }}" class="btn btn-success pull-right">
+            <i class="fa fa-plus" aria-hidden="true"></i> Adicionar
+        </a>
+    </h2>
 	<hr>
+
+    @if(Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ Session::get('success') }}
+    </div>
+    @endif
+
+    @if(Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ Session::get('error') }}
+    </div>
+    @endif
 
 	<div class="panel panel-default">
   		<div class="panel-body">
@@ -38,7 +61,7 @@
 	</div>
 
 	<div class="table-responsivo">
-		<table class="table table-hover">
+		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
 					<th class="text-center">Código</th>
@@ -46,7 +69,7 @@
 					<th class="text-center">Data</th>
 					<th class="text-center">Valor</th>
 					<th>Forma de pagamento</th>
-                    <th>Ações</th>
+                    <th width="150px">Ações</th>
 				</tr>
 			</thead>
 			<tbody>

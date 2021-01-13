@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/admin/home') }}">Sistema Financeiro</a>
+                    <a class="navbar-brand" href="{{ url('/') }}">Sistema Financeiro</a>
                 </div>
                 <ul class="nav navbar-right top-nav">
                     <li>
