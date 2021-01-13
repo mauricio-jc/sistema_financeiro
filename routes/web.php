@@ -30,3 +30,6 @@ Route::post('/contas-pagar/atualizar/{id}', 'ContasPagarController@update');
 Route::get('/contas-pagar/excluir/{id}', 'ContasPagarController@delete');
 
 Route::get('/caixa', 'CaixaController@index');
+
+Route::get('/relatorios', 'RelatoriosController@index');
+Route::get('/relatorios/print/{tipo}', 'RelatoriosController@print');
