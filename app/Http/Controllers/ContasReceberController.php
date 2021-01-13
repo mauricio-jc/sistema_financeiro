@@ -9,9 +9,17 @@ use Session;
 
 class ContasReceberController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+    	$dadosGet = $request->all();
     	$formasPagamentos = FormaPagamento::all();
-    	$contasReceber = ContaReceber::orderBy('id', 'DESC')->get();
+
+	  	if(empty($dadosGet) || (sizeof($dadosGet) == 1)) {
+    		$contasReceber = ContaReceber::orderBy('id', 'DESC')->get();
+        }
+        else {
+        	$contasReceber = ContaReceber::getContaReceber($dadosGet['codigo'], $dadosGet['cliente'], $dadosGet['forma_pagamento']);
+        }
+
     	return view('contas_receber.index', compact('formasPagamentos', 'contasReceber'));
     }
 

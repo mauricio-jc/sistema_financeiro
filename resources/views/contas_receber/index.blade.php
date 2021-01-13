@@ -44,9 +44,9 @@
     			<div class="form-group col-md-3">
     				<label>Forma de pagamento:</label>
     				<select name="forma_pagamento" class="form-control">
-    					<option value="0">Todos</option>
+    					<option value="Todos">Todos</option>
     					@foreach($formasPagamentos as $formaPagamento)
-    					<option value="{{ $formaPagamento->id }}">{{ $formaPagamento->nome }}</option>
+    					<option value="{{ $formaPagamento->nome }}">{{ $formaPagamento->nome }}</option>
     					@endforeach
     				</select>
     			</div>
@@ -60,7 +60,10 @@
   		</div>
 	</div>
 
-	<div class="table-responsivo">
+	<div class="table-responsive">
+        <a href="{{ url('/contas-receber') }}">
+            <i class="fa fa-refresh" aria-hidden="true"></i> Listar todos
+        </a>
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
