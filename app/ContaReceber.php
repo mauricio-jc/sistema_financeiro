@@ -28,4 +28,27 @@ class ContaReceber extends Model
     	$contaReceber = $contaReceber->orderBy('id', 'DESC')->get();
     	return $contaReceber;
     }
+
+    public static function getValoresContaReceber() {
+        $total = ContaReceber::sum('valor');
+
+        $totalDinheiro = ContaReceber::where('forma_pagamento', '=', 'Dinheiro')->sum('valor');
+
+        $totalBoleto = ContaReceber::where('forma_pagamento', '=', 'Boleto')->sum('valor');
+
+        $totalCartaoCredito = ContaReceber::where('forma_pagamento', '=', 'Cartão de crédito')->sum('valor');
+
+        $totalCartaoDebito = ContaReceber::where('forma_pagamento', '=', 'Cartão de débito')->sum('valor');
+
+        $totalTransferenciaBancaria = ContaReceber::where('forma_pagamento', '=', 'Transferência bancária')->sum('valor');
+
+        return $valores = [
+            'total' => $total,
+            'totalDinheiro' => $totalDinheiro,
+            'totalBoleto' => $totalBoleto,
+            'totalCartaoCredito' => $totalCartaoCredito,
+            'totalCartaoDebito' => $totalCartaoDebito,
+            'totalTransferenciaBancaria' => $totalTransferenciaBancaria
+        ];
+    }
 }

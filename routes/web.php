@@ -22,10 +22,11 @@ Route::get('/contas-receber/editar/{id}', 'ContasReceberController@edit');
 Route::post('/contas-receber/atualizar/{id}', 'ContasReceberController@update');
 Route::get('/contas-receber/excluir/{id}', 'ContasReceberController@delete');
 
-
 Route::get('/contas-pagar', 'ContasPagarController@index');
 Route::get('/contas-pagar/adicionar', 'ContasPagarController@add');
 Route::post('/contas-pagar/salvar', 'ContasPagarController@store');
 Route::get('/contas-pagar/editar/{id}', 'ContasPagarController@edit');
 Route::post('/contas-pagar/atualizar/{id}', 'ContasPagarController@update');
 Route::get('/contas-pagar/excluir/{id}', 'ContasPagarController@delete');
+
+Route::get('/caixa', 'CaixaController@index');

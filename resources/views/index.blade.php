@@ -1,8 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <h1 class="primary-color">Saldo: R$ 11.097,25</h1>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <h2 class="text-success">Receitas: R$ {{ formatCoin($receitas) }}</h2>
+        </div>
+        <div class="col-md-4">
+            <h2 class="text-danger">Saídas: R$ {{ formatCoin($saidas) }}</h2>
+        </div>
+        <div class="col-md-4">
+            <h2 class="primary-color">Saldo: R$ {{ formatCoin($saldo) }}</h2>
+        </div>
+    </div>
     <hr>
 
     <div class="row">
