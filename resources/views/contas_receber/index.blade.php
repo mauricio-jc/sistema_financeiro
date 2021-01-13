@@ -91,7 +91,7 @@
                         <a href="{{ url('/contas-receber/editar/' . $contaReceber->id) }}" class="btn btn-primary primary-back">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </a>
-                        <a href="{{ url('/contas-receber/excluir/' . $contaReceber->id) }}" class="btn btn-danger">
+                        <a href="{{ url('/contas-receber/excluir/' . $contaReceber->id) }}" class="btn btn-danger" onclick="return confirm('Excluir este recebimento?');">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </td>

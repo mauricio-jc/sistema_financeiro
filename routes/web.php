@@ -20,3 +20,4 @@ Route::get('/contas-receber/adicionar', 'ContasReceberController@add');
 Route::post('/contas-receber/salvar', 'ContasReceberController@store');
 Route::get('/contas-receber/editar/{id}', 'ContasReceberController@edit');
 Route::post('/contas-receber/atualizar/{id}', 'ContasReceberController@update');
+Route::get('/contas-receber/excluir/{id}', 'ContasReceberController@delete');

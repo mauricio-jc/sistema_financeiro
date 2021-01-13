@@ -67,4 +67,17 @@ class ContasReceberController extends Controller
 
     	return redirect('/contas-receber/editar/' . $contaReceber->id);
     }
+
+    public function delete($id) {
+    	$contaReceber = ContaReceber::find($id);
+
+    	if($contaReceber->delete()) {
+    		Session::flash('success', 'Recebimento excluído com sucesso.');
+    	}
+    	else {
+    		Session::flash('error', 'Problemas ao excluir recebimento. Tente novamente.');
+    	}
+
+    	return redirect('/contas-receber');
+    }
 }
