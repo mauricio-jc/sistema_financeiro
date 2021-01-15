@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/caixa', 'Api\CaixaController@index');
+Route::get('/contas-receber', 'Api\ContasReceberController@index');
+Route::get('/contas-pagar', 'Api\ContasPagarController@index');
